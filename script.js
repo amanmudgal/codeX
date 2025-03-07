@@ -13,24 +13,21 @@ yesBtn.addEventListener("click", () => {
 
 // No button moves smoothly
 noBtn.addEventListener("mouseover", () => {
-    const wrapper = document.querySelector(".wrapper");
-    const wrapperRect = wrapper.getBoundingClientRect();
-    const noBtnRect = noBtn.getBoundingClientRect();
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
 
-    // Get viewport dimensions
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
+    // Define movement limits (50% of screen width & height)
+    const maxX = screenWidth * 0.5; // 50% of screen width
+    const maxY = screenHeight * 0.5; // 50% of screen height
 
-    // Calculate max positions to ensure it stays inside
-    const maxX = Math.min(viewportWidth - noBtnRect.width, wrapperRect.width - noBtnRect.width);
-    const maxY = Math.min(viewportHeight - noBtnRect.height, wrapperRect.height - noBtnRect.height);
-
-    // Ensure it moves to a new position
     let randomX, randomY;
     do {
-        randomX = Math.floor(Math.random() * maxX);
-        randomY = Math.floor(Math.random() * maxY);
-    } while (Math.abs(randomX - noBtn.offsetLeft) < 50 && Math.abs(randomY - noBtn.offsetTop) < 50);
+        randomX = Math.random() * maxX;
+        randomY = Math.random() * maxY;
+    } while (
+        Math.abs(randomX - noBtn.offsetLeft) < 50 &&
+        Math.abs(randomY - noBtn.offsetTop) < 50
+    ); // Ensures movement
 
     // Apply smooth transition
     noBtn.style.transition = "left 0.2s ease-out, top 0.2s ease-out";
