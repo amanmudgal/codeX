@@ -84,20 +84,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Make "No" button move randomly on hover
     noBtn.addEventListener("mouseover", () => {
-        const wrapper = document.querySelector(".wrapper");
-        const wrapperRect = wrapper.getBoundingClientRect();
-        const noBtnRect = noBtn.getBoundingClientRect();
+    const wrapper = document.querySelector(".wrapper");
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const noBtnRect = noBtn.getBoundingClientRect();
 
-        // Calculate max positions to keep the button within wrapper bounds
-        const maxX = wrapperRect.width - noBtnRect.width;
-        const maxY = wrapperRect.height - noBtnRect.height;
+    // Get viewport dimensions
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
 
-        const randomX = Math.floor(Math.random() * maxX);
-        const randomY = Math.floor(Math.random() * maxY);
+    // Calculate max positions to keep button inside screen bounds
+    const maxX = Math.min(viewportWidth - noBtnRect.width, wrapperRect.width - noBtnRect.width);
+    const maxY = Math.min(viewportHeight - noBtnRect.height, wrapperRect.height - noBtnRect.height);
 
-        noBtn.style.position = "absolute";
-        noBtn.style.left = `${randomX}px`;
-        noBtn.style.top = `${randomY}px`;
-    });
+    // Generate new random positions within the calculated limits
+    const randomX = Math.max(0, Math.floor(Math.random() * maxX));
+    const randomY = Math.max(0, Math.floor(Math.random() * maxY));
+
+    // Apply new position
+    noBtn.style.position = "absolute";
+    noBtn.style.left = `${randomX}px`;
+    noBtn.style.top = `${randomY}px`;
+});
+
 });
 
