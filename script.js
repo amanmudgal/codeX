@@ -2,11 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Injecting HTML into the body
     document.body.innerHTML = `
         <div class="wrapper">
-            <h2 class="question">Do you love me?</h2>
+            <h2 class="question">How are you feeling after this coffee session</h2>
             <img class="gif" alt="gif" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjJvdWZzYXc1NGJ6aGp1cDE3b2dyNnVzOGN1andkMjVrMmRzeGwwZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3OhXBaoR1tVPW/giphy.gif" />
             <div class="btn-group">
-                <button class="yes-btn">Yes</button>
-                <button class="no-btn">No</button>
+                <button class="yes-btn">Good</button>
+                <button class="no-btn">Bad</button>
             </div>
         </div>
     `;
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Change text and gif when "Yes" button is clicked
     yesBtn.addEventListener("click", () => {
-        question.innerHTML = "You got Rickrolled 😘 (FOLLOW ME @kristel_tech or 7 years bad luck)";
+        question.innerHTML = "Thanks for the feedback";
         gif.src = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGI1cW5wMWhpaDF5b3pjdTF0OHZrcHJvaGkzOHJteDhmd245OGRnZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vuw9m5wXviFIQ/giphy.gif";
     });
 
