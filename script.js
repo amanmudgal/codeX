@@ -92,19 +92,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
-    // Calculate max positions to keep button inside screen bounds
+    // Calculate max positions to ensure the button stays inside the screen
     const maxX = Math.min(viewportWidth - noBtnRect.width, wrapperRect.width - noBtnRect.width);
     const maxY = Math.min(viewportHeight - noBtnRect.height, wrapperRect.height - noBtnRect.height);
 
-    // Generate new random positions within the calculated limits
-    const randomX = Math.max(0, Math.floor(Math.random() * maxX));
-    const randomY = Math.max(0, Math.floor(Math.random() * maxY));
+    // Get current position
+    let currentX = noBtn.offsetLeft;
+    let currentY = noBtn.offsetTop;
+
+    // Generate a new position that is different from the current one
+    let randomX, randomY;
+    do {
+        randomX = Math.max(0, Math.floor(Math.random() * maxX));
+        randomY = Math.max(0, Math.floor(Math.random() * maxY));
+    } while (Math.abs(randomX - currentX) < 50 && Math.abs(randomY - currentY) < 50);  // Ensures movement
 
     // Apply new position
     noBtn.style.position = "absolute";
     noBtn.style.left = `${randomX}px`;
     noBtn.style.top = `${randomY}px`;
 });
+
 
 });
 
